@@ -1,8 +1,11 @@
 import {Link} from "react-router-dom";
-import {getInvoices} from "../data";
+import { getPatients } from "../data";
+import {useState} from "react";
 
-let Invoices = () => {
-    let invoices = getInvoices();
+let Patients = ({setPatients, patients}) => {
+
+    setPatients(getPatients());
+    console.log(patients)
     return (
         <div style={{display: "flex"}}>
             <nav
@@ -11,13 +14,13 @@ let Invoices = () => {
                     padding: "1rem"
                 }}
             >
-                {invoices.map(invoice => (
+                {patients.map(patient => (
                     <Link
                         style={{ display: "block", margin: "1rem 0" }}
-                        to={`/invoices/${invoice.number}`}
-                        key={invoice.number}
+                        to={`/patients/${patient.patient_ID}`}
+                        key={patient.patient_ID}
                     >
-                        {invoice.name}
+                        {patient.first_name + patient.last_name}
                     </Link>
                 ))}
             </nav>
@@ -25,4 +28,4 @@ let Invoices = () => {
     );
 }
 
-export default Invoices;
+export default Patients;

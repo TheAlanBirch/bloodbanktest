@@ -32,9 +32,9 @@ app.get('/api/patients', (req, res) => {
 
 //show single patient
 app.get('/api/patients/:patient_ID',(req, res) => {
-    let sql = "SELECT * FROM product WHERE patient_ID="+req.params.patient_ID;
+    let sql = "SELECT * FROM patients WHERE patient_ID="+req.params.patient_ID;
     let query = conn.query(sql, (err, results) => {
-        if(err) throw err;
+        if(err) console.log("Error occurred:" + err);
         res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
     });
 });
@@ -54,17 +54,17 @@ app.post('/api/patients',(req, res) => {
 });
 
 //update product
-app.put('/api/patients/:id',(req, res) => {
-    let sql = "UPDATE patients SET product_name="+req.body.product_name+", product_price="+req.body.product_price+" WHERE product_id="+req.params.id;
-    let query = conn.query(sql, (err, results) => {
-        if(err) throw err;
-        res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
-    });
-});
+// app.put('/api/patients/:id',(req, res) => {
+//     let sql = "UPDATE patients SET patient_name="+req.body.patient_name+", product_price="+req.body.product_price+" WHERE product_id="+req.params.id;
+//     let query = conn.query(sql, (err, results) => {
+//         if(err) throw err;
+//         res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+//     });
+// });
 
 //Delete product
-app.delete('/api/products/:id',(req, res) => {
-    let sql = "DELETE FROM product WHERE product_id="+req.params.id+"";
+app.delete('/api/patients/:id',(req, res) => {
+    let sql = "DELETE FROM patients WHERE patient_ID="+req.params.id+"";
     let query = conn.query(sql, (err, results) => {
         if(err) throw err;
         res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
