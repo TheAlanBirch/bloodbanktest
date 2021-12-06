@@ -28,7 +28,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="a7ceb2c7-71aa-42f4-a8bb-ae1ad9ffb072">
-      <console name="blood_bank_schema" type="STANDARD" schema="mysql" session="Main" />
+      <console name="Local Blood Bank Server" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">

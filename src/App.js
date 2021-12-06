@@ -1,15 +1,22 @@
 import * as React from 'react';
-import ReactDOM from 'react-dom';
-import Button from '@mui/material/Button';
-import {useState} from "react";
+import { Outlet, Link } from "react-router-dom";
 
 let App = () => {
-    fetch('http://localhost:3001/patients')
-        .then(response => response.json())
-        .then(something => console.log(something))
     return(
-        <div/>
-    )
+        <div>
+            <h1>Bookkeeper!</h1>
+            <nav
+                style={{
+                borderBottom: "solid 1px",
+                paddingBottom: "1rem"
+                }}
+            >
+                <Link to="/invoices">Invoices</Link>  |{" "}
+                <Link to="/expenses">Expenses</Link>
+            </nav>
+            <Outlet />
+        </div>
+    );
 }
 
 export default App;
