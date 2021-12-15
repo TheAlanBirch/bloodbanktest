@@ -1,29 +1,25 @@
 import * as React from 'react';
-import {Link, Outlet} from "react-router-dom";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 import {useState} from "react";
+import Donors from "./routes/donors";
+import Patients from "./routes/patients";
+import HomePage from "./routes/homePage";
 
 let App = () => {
     let [patients, setPatients] = useState([]);
-    let toPathwithProps = {
-        pathname: "/patients",
-        param1: setPatients,
-        param2: patients
-    }
+
     return(
-        <div>
-            <h1>Blood Bank Management</h1>
-            <h4>Siloam Springs Bank Location</h4>
-            <nav
-                style={{
-                borderBottom: "solid 1px",
-                paddingBottom: "1rem"
-                }}
-            >
-                <Link to="/patients">Patients</Link>  |{" "}
-                <Link to="/donors">Donors</Link>
-            </nav>
-            <Outlet />
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<HomePage />}>
+                    <Route path="/donors" element={<Donors />} />
+                    <Route path="/patients" element={<Patients patients={patients} setPatients={setPatients}/>} >
+                        <Route path="/patients/1" element={<Donors />}/>
+                        <Route path="/patients/2" element={<Donors />}/>
+                    </Route>
+                </Route>
+            </Routes>
+        </BrowserRouter>
     );
 }
 
